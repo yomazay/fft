@@ -51,4 +51,5 @@ HEADERS += \
     nlohmann/ordered_map.hpp \
     nlohmann/thirdparty/hedley/hedley.hpp \
     nlohmann/thirdparty/hedley/hedley_undef.hpp \
-    parser.h
+    parser.h \
+    types.h

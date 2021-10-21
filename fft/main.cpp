@@ -1,13 +1,6 @@
-#include <iostream>
-
-#include <string>
-#include <unordered_map>
 #include <iomanip>
-#include <queue>
 #include <chrono>
 #include <fstream>
-
-//#include <nlohmann/json.hpp>
 
 #include <lob.h>
 #include <parser.h>
@@ -100,18 +93,12 @@ int main(int argc, char **argv)
     out_file << std::flush;
     out_file.close();
 
-    long long min_time = *benchmark_upd.begin();
-    long long max_time = *benchmark_upd.begin();
+    long long min_time = *std::min_element(benchmark_get.begin(), benchmark_get.end());
+    long long max_time = *std::max_element(benchmark_get.begin(), benchmark_get.end());
     long long full_time = 0;
 
     for(const auto &el : benchmark_upd)
-    {
         full_time += el;
-        if (min_time > el)
-            min_time = el;
-        if (max_time < el)
-            max_time = el;
-    }
 
     std::cout << "=== UPDATE === " << std::endl;
     std::cout << "Full time (nsec): " << full_time << std::endl;
@@ -119,25 +106,18 @@ int main(int argc, char **argv)
     std::cout << "Avg time (nsec): " << full_time / (double)benchmark_upd.size() << std::endl;
     std::cout << "Max time (nsec): " << max_time << std::endl;
 
-    min_time = *benchmark_get.begin();
-    max_time = *benchmark_get.begin();
+    min_time = *std::min_element(benchmark_get.begin(), benchmark_get.end());
+    max_time = *std::max_element(benchmark_get.begin(), benchmark_get.end());
     full_time = 0;
 
     for(const auto &el : benchmark_get)
-    {
         full_time += el;
-        if (min_time > el)
-            min_time = el;
-        if (max_time < el)
-            max_time = el;
-    }
 
     std::cout << std::endl << "=== GET === " << std::endl;
     std::cout << "Full time (nsec): " << full_time << std::endl;
     std::cout << "Min time (nsec): " << min_time << std::endl;
     std::cout << "Avg time (nsec): " << full_time / (double)benchmark_get.size() << std::endl;
     std::cout << "Max time (nsec): " << max_time << std::endl;
-
 
     return 0;
 }

@@ -2,35 +2,35 @@
 #define PARSER_H
 
 #include <string>
-#include <unordered_map>
-#include <vector>
+
 #include <nlohmann/json.hpp>
+#include <types.h>
 
 struct snapshot_t
 {
     snapshot_t() : asks{}, bids{} {}
-    snapshot_t(const std::unordered_map<double, long double> &a, const std::unordered_map<double, long double> &b, const long long &t) :
+    snapshot_t(const u_map_t &a, const u_map_t &b, const long long &t) :
         asks(a),
         bids(b),
         timestamp(t)
     {}
 
-    std::unordered_map<double, long double> asks;
-    std::unordered_map<double, long double> bids;
+    u_map_t asks;
+    u_map_t bids;
     long long timestamp;
 };
 
 struct update_t
 {
     update_t() : asks{}, bids{} {}
-    update_t(const std::vector<std::pair<double, long double>> &a, const std::vector<std::pair<double, long double>> &b, const long long &t) :
+    update_t(const vec_t &a, const vec_t &b, const long long &t) :
         asks(a),
         bids(b),
         timestamp(t)
     {}
 
-    std::vector<std::pair<double, long double>> asks;
-    std::vector<std::pair<double, long double>> bids;
+    vec_t asks;
+    vec_t bids;
     long long timestamp;
 };
 

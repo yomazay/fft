@@ -1,10 +1,10 @@
 #ifndef LOB_H
 #define LOB_H
 
-#include <unordered_map>
-#include <vector>
 #include <algorithm>
 #include <iostream>
+
+#include <types.h>
 
 struct lob_data_t
 {
@@ -33,8 +33,6 @@ struct lob_data_t
 class LOB
 {
 public:
-    typedef std::unordered_map<double, long double> u_map_t;
-    typedef std::vector<std::pair<double, long double>> vec_t;
 
     LOB(const u_map_t &asks, const u_map_t &bids, long long &timestamp);
     bool update(const vec_t &asks, const vec_t &bids, const long long &timestamp);
@@ -45,9 +43,6 @@ private:
     u_map_t _asks;
     u_map_t _bids;
     long long _timestamp;
-
-    double _best_ask;
-    double _best_bid;
 
 };
 

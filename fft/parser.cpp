@@ -16,11 +16,9 @@ snapshot_t Parser::get_snapshot(const std::string &str)
     {
         nlohmann::json json_data = get_json(str);
 
-        std::unordered_map<double, long double> asks_snapshot;
         for (const auto &el : json_data["asks"])
             snapshot.asks[el[0]] = el[1];
 
-        std::unordered_map<double, long double> bids_snapshot;
         for (const auto &el : json_data["bids"])
             snapshot.bids[el[0]] = el[1];
 
